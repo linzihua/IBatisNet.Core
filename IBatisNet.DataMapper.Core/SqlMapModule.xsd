@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://ibatis.apache.org/module"
+  elementFormDefault="qualified"
+  xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://ibatis.apache.org/module"
+  xmlns:vs="http://schemas.microsoft.com/Visual-Studio-Intellisense"
+  vs:friendlyname="iBATIS.NET module file Configuration Schema"
+  vs:ishtmlschema="false"
+  vs:iscasesensitive="true"
+  vs:requireattributequotes="true"
+  vs:defaultnamespacequalifier=""
+  vs:defaultnsprefix="" >
+
+  <xs:annotation>
+    <xs:documentation>
+      Mapping Module XML Schema Definition
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:element name="sqlMap">
+    <xs:complexType>
+      <xs:attribute name="resource" type="xs:string"/>
+      <xs:attribute name="url" type="xs:string"/>
+      <xs:attribute name="embedded" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="sqlMaps">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="sqlMap" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="sqlMapModule">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element ref="sqlMaps" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

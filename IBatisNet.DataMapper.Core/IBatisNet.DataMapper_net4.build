@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<project name="IBatisNet.DataMapper" default="build">
+    <target name="build">
+		<csc target="library" warnaserror="false" define="dotnet4" keyfile="../AssemblyKey.snk"
+		debug="${build.debug}" output="../${Nant_output}/${project::get-name()}.dll" doc="../${Nant_output}/${project::get-name()}.xml">
+            <nowarn>
+				<warning number="${nowarn.numbers}" />
+			</nowarn>
+			<sources failonempty="true">
+                <include name="**/*.cs" />
+				<exclude name="Commands/EmbedParamsPreparedCommand.cs" />				
+				<exclude name="Configuration/ResultMapping/IColumn.cs" />
+				<exclude name="SessionStore/HybridWebThreadSessionStore.cs" if ="${property::get-value('target') == 'net-4.0'}"/>
+				<exclude name="SessionStore/WcfSessionItemsInstanceExtension.cs" if ="${property::get-value('target') == 'net-4.0'}"/>				
+				<exclude name="SessionStore/WcfSessionStore.cs" if ="${property::get-value('target') == 'net-4.0'}"/>				
+				<exclude name="SessionStore/InstanceItems.cs" if ="${property::get-value('target') == 'net-4.0'}"/>
+				<exclude name="SessionStore/InstanceItems-net20.cs" if ="${property::get-value('target') != 'net-4.0'}"/>				
+            </sources>
+            <resources basedir="." prefix="IBatisNet.DataMapper.">
+                <include name="SqlMapConfig.xsd" />
+                <include name="SqlMap.xsd" />
+            </resources>
+            <resources basedir="Resources">
+                <include name="**/*" />
+            </resources>
+            <references>
+                <include name="../External-Bin/Net/4.0/Castle.Core.dll" />	
+                <include name="../${Nant_output}/IBatisNet.Common.dll" />
+				<include name="System" />
+				<include name="System.Configuration" />
+				<include name="System.Data" />
+            </references>
+        </csc>
+    </target>
+</project>
